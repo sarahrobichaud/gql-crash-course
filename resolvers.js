@@ -51,5 +51,10 @@ export const resolvers = {
       data.games.push(game);
       return game;
     },
+    updateGame(_, args) {
+      const idx = data.games.findIndex((g) => g.id === args.id);
+      data.games[idx] = { ...data.games[idx], ...args.edits };
+      return data.games[idx];
+    },
   },
 };
