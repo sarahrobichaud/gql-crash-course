@@ -38,4 +38,18 @@ export const resolvers = {
       return data.games.find((g) => g.id === parent.game_id);
     },
   },
+  Mutation: {
+    deleteGame(_, args) {
+      data.games = data.games.filter((g) => g.id !== args.id);
+      return data.games;
+    },
+    addGame(_, args) {
+      const game = {
+        ...args.game,
+        id: Math.floor(Math.random() * 10000).toString(),
+      };
+      data.games.push(game);
+      return game;
+    },
+  },
 };
